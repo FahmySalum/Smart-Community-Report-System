@@ -466,6 +466,11 @@ button {
   margin-bottom: 2rem;
 }
 
+/* Page-specific spacing for report page to separate the title from CTA card/form */
+.report-page .section-title {
+  margin-bottom: 6rem;
+}
+
 .section-title h2 {
   margin-bottom: 0.2rem;
 }
