@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CityReport — Issue Detail</title>
+  <link rel="stylesheet" href="../CSS/style.css">
+</head>
+<body>
+  <header class="navbar">
+    <div class="container navbar-inner">
+      <a href="index.html" class="brand"><span class="brand-icon">C</span>CityReport</a>
+      <nav class="nav-links">
+        <a href="index.html">Home</a>
+        <a href="browse-issues.html">Browse Issues</a>
+        <a href="report-issue.html">Report Issue</a>
+      </nav>
+      <div class="nav-actions">
+        <a href="login.html" class="sign-in">Sign In</a>
+        <a href="signup.html" class="sign-up">Sign Up</a>
+      </div>
+    </div>
+  </header>
+
+  <main class="container page-section">
+    <a href="browse-issues.html" style="display:inline-flex;align-items:center;gap:0.4rem;color:rgba(18,18,18,0.75);margin-bottom:1rem;">← Back to Issues</a>
+    <article id="issue-detail-card" class="card" style="padding:2rem;">
+      <div class="loading-message">Loading issue details…</div>
+    </article>
+  </main>
+
+  <footer class="footer">
+    <div class="container footer-grid">
+      <div>
+        <a href="index.html" class="brand" style="color:#FFFFFF;"><span class="brand-icon">C</span>CityReport</a>
+        <p>Empowering communities to report, track, and resolve local issues — together.</p>
+        <div class="footer-social">
+          <a href="#" aria-label="Facebook" title="Facebook"></a>
+          <a href="#" aria-label="Twitter" title="Twitter"></a>
+          <a href="#" aria-label="Instagram" title="Instagram"></a>
+          <a href="#" aria-label="GitHub" title="GitHub"></a>
+        </div>
+      </div>
+      <div>
+        <h4>Product</h4>
+        <ul class="footer-links">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="browse-issues.html">Browse Issues</a></li>
+          <li><a href="report-issue.html">Report Issue</a></li>
+          <li><a href="login.html">Sign In</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Company</h4>
+        <ul class="footer-links">
+          <li><a href="about.html">About Us</a></li>
+          <li><a href="#">Blog</a></li>
+          <li><a href="#">Careers</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Legal</h4>
+        <ul class="footer-links">
+          <li><a href="privacy-policy.html">Privacy Policy</a></li>
+          <li><a href="terms-of-service.html">Terms of Service</a></li>
+          <li><a href="cookie-policy.html">Cookie Policy</a></li>
+          <li><a href="accessibility.html">Accessibility</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="container footer-bottom">
+      <small>© 2026 CityReport. All rights reserved.</small>
+      <nav class="nav-links" style="gap:1rem;">
+        <a href="#">Status</a>
+        <a href="#">Docs</a>
+        <a href="#">Support</a>
+      </nav>
+    </div>
+  </footer>
+  <script src="../JS/cityreport-api.js"></script>
+  <script src="../JS/site.js"></script>
+  <script>
+    const issueCard = document.getElementById('issue-detail-card');
+
+    function createMetadataCard(label, value) {
+      return `
+        <div class="small-card">
+          <strong>${label}</strong>
+          <span>${value || 'Unknown'}</span>
+        </div>
+      `;
+    }
+
+    function formatStatusLabel(status) {
+      return status.replace('_', ' ').replace(/\b\w/g, char => char.toUpperCase());
+    }
+
+    function formatBadge(status, priority, category) {
+      const statusClass = status === 'open' ? 'badge-primary' : status === 'in_progress' ? 'badge-warning' : 'badge-soft';
+      const priorityClass = priority === 'critical' ? 'badge-danger' : priority === 'high' ? 'badge-warning' : priority === 'medium' ? 'badge-primary' : 'badge-soft';
+      return `
+        <div style="display:flex;flex-wrap:wrap;gap:0.75rem;align-items:center;margin-bottom:1rem;">
+          <span class="badge ${statusClass}">${formatStatusLabel(status)}</span>
+          <span class="badge ${priorityClass}">${formatStatusLabel(priority)} Priority</span>
+          <span class="badge badge-soft">${category}</span>
+          <span style="margin-left:auto;font-size:0.85rem;color:rgba(18,18,18,0.55);">${issue.id}</span>
+        </div>
+      `;
+    }
+
+    function renderIssue(issue) {
+      const attachmentHtml = issue.attachmentList.length
+        ? issue.attachmentList.map(file => `<li><a href="/api/attachments/${encodeURIComponent(file.id)}" target="_blank" rel="noopener">${file.filename}</a></li>`).join('')
+        : '<li>No attachments uploaded.</li>';
+
+      const commentHtml = issue.commentList.length
+        ? issue.commentList.map(comment => `
+            <div class="comment-card" style="margin-top:1rem;">
+              <header><span>${CityReport.escapeHTML(comment.author)}</span><span>${CityReport.relativeTime(comment.createdAt)}</span></header>
+              <p>${CityReport.escapeHTML(comment.body)}</p>
+            </div>
+          `).join('')
+        : '<p style="color:rgba(18,18,18,0.65);">No comments yet.</p>';
+
+      issueCard.innerHTML = `
+        ${createMetadataCard('Issue', issue.id)}
+        <div>${createMetadataCard('Location', CityReport.escapeHTML(issue.location))}</div>
+        <div>${createMetadataCard('Reported by', CityReport.escapeHTML(issue.reportedBy || 'Guest Reporter'))}</div>
+        <div>${createMetadataCard('Reported', CityReport.formatDate(issue.reportedAt))}</div>
+        <div>${createMetadataCard('Updated', CityReport.formatDate(issue.updatedAt))}</div>
+        <div style="display:flex;flex-wrap:wrap;gap:0.75rem;align-items:center;margin-bottom:1rem;">
+          <span class="badge ${issue.status === 'open' ? 'badge-primary' : issue.status === 'in_progress' ? 'badge-warning' : 'badge-soft'}">${formatStatusLabel(issue.status)}</span>
+          <span class="badge ${issue.priority === 'critical' ? 'badge-danger' : issue.priority === 'high' ? 'badge-warning' : issue.priority === 'medium' ? 'badge-primary' : 'badge-soft'}">${formatStatusLabel(issue.priority)} Priority</span>
+          <span class="badge badge-soft">${issue.categoryLabel}</span>
+          <span style="margin-left:auto;font-size:0.85rem;color:rgba(18,18,18,0.55);">${issue.id}</span>
+        </div>
+        <h2>${CityReport.escapeHTML(issue.title)}</h2>
+        <p style="color:rgba(18,18,18,0.72);margin:1rem 0 2rem;">${CityReport.escapeHTML(issue.description)}</p>
+        <div class="grid-2" style="margin-bottom:1.5rem;">
+          ${createMetadataCard('Location', CityReport.escapeHTML(issue.location))}
+          ${createMetadataCard('Reported by', CityReport.escapeHTML(issue.reportedBy || 'Guest Reporter'))}
+          ${createMetadataCard('Reported', CityReport.formatDate(issue.reportedAt))}
+          ${createMetadataCard('Updated', CityReport.formatDate(issue.updatedAt))}
+        </div>
+        <button id="upvote-button" class="btn btn-secondary" style="margin-bottom:1.5rem;">👍 Upvote (${issue.upvotes})</button>
+        <div style="border-top:1px solid var(--surface-3); margin:2rem 0;"></div>
+        <div>
+          <h3 style="display:flex;align-items:center;gap:0.5rem;">💬 Comments (${issue.commentList.length})</h3>
+          ${commentHtml}
+        </div>
+        <div style="margin-top:1.5rem;">
+          <h3>Attachments</h3>
+          <ul>${attachmentHtml}</ul>
+        </div>
+      `;
+
+      const upvoteButton = document.getElementById('upvote-button');
+      if (upvoteButton) {
+        upvoteButton.addEventListener('click', async () => {
+          upvoteButton.disabled = true;
+          try {
+            const { issue: updatedIssue } = await CityReport.request(`/api/issues/${encodeURIComponent(issue.id)}/upvote`, {
+              method: 'POST'
+            });
+            renderIssue(updatedIssue);
+          } catch (error) {
+            console.error(error);
+            alert('Unable to upvote right now.');
+          } finally {
+            upvoteButton.disabled = false;
+          }
+        });
+      }
+    }
+
+    async function loadIssue() {
+      const params = new URLSearchParams(window.location.search);
+      const issueId = params.get('id');
+      if (!issueId) {
+        issueCard.innerHTML = '<div class="loading-message">No issue ID provided.</div>';
+        return;
+      }
+
+      try {
+        const { issue } = await CityReport.request(`/api/issues/${encodeURIComponent(issueId)}`);
+        renderIssue(issue);
+      } catch (error) {
+        issueCard.innerHTML = `<div class="loading-message">${error.message || 'Issue not found.'}</div>`;
+      }
+    }
+
+    loadIssue();
+  </script>
+</body>
+</html>

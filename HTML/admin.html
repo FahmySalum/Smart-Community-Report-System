@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CityReport — Admin Dashboard</title>
+  <link rel="stylesheet" href="../CSS/style.css">
+</head>
+<body>
+  <main class="container page-section">
+    <div style="display:flex;align-items:center;gap:1rem;margin-bottom:2rem;">
+      <div class="small-card" style="padding:1rem;min-width:4rem;max-width:4rem;background:rgba(56,189,248,0.15);color:#0369A1;">⚑</div>
+      <div>
+        <h2>Admin Dashboard</h2>
+        <p style="color:rgba(18,18,18,0.55);">Manage issues, users, and view analytics</p>
+      </div>
+    </div>
+
+    <div class="grid-2" style="margin-bottom:2rem;">
+      <div class="small-card"><strong id="admin-total-issues">0</strong><span>Total Issues</span></div>
+      <div class="small-card"><strong id="admin-open-issues">0</strong><span>Open Issues</span></div>
+      <div class="small-card"><strong id="admin-in-progress">0</strong><span>In Progress</span></div>
+      <div class="small-card"><strong id="admin-resolved">0</strong><span>Resolved</span></div>
+    </div>
+
+    <div class="tab-strip">
+      <div class="tab active">Issues</div>
+      <div class="tab">Users</div>
+      <div class="tab">Analytics</div>
+    </div>
+
+    <article class="card" style="padding:2rem; margin-bottom:2rem;">
+      <div style="margin-bottom:1rem;"><h3>Issue Management</h3><p style="color:rgba(18,18,18,0.65);">View, update, and manage all community-reported issues</p></div>
+      <div class="table-card">
+        <table class="table">
+          <thead>
+            <tr><th>ID</th><th>Title</th><th>Category</th><th>Status</th><th>Priority</th><th>Upvotes</th><th style="text-align:right;">Actions</th></tr>
+          </thead>
+          <tbody id="admin-issues-body">
+            <tr><td colspan="7" style="text-align:center; color:rgba(18,18,18,0.65); padding:2rem;">Loading issues...</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </article>
+
+    <article class="card" style="padding:2rem; margin-bottom:2rem;">
+      <div style="margin-bottom:1rem;"><h3>User Management</h3><p style="color:rgba(18,18,18,0.65);">View registered users, their roles, and manage account status</p></div>
+      <div class="table-card">
+        <table class="table">
+          <thead>
+            <tr><th>ID</th><th>Name</th><th>Email</th><th>Role</th><th>Status</th><th>Reports</th><th>Joined</th><th style="text-align:right;">Actions</th></tr>
+          </thead>
+          <tbody id="admin-users-body">
+            <tr><td colspan="8" style="text-align:center; color:rgba(18,18,18,0.65); padding:2rem;">Loading users...</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </article>
+
+    <div class="grid-2" style="gap:1.5rem;">
+      <article class="card" style="padding:2rem;"><h3>Monthly Trends</h3><p style="color:rgba(18,18,18,0.65);">Issues reported vs resolved over the last 6 months.</p><div class="chart-placeholder">Line chart placeholder</div></article>
+      <article class="card" style="padding:2rem;"><h3>Category Breakdown</h3><p style="color:rgba(18,18,18,0.65);">Issue volume across top categories.</p><div class="chart-placeholder">Pie chart placeholder</div></article>
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="container footer-grid">
+      <div>
+        <a href="index.html" class="brand" style="color:#FFFFFF;"><span class="brand-icon">C</span>CityReport</a>
+        <p>Empowering communities to report, track, and resolve local issues — together.</p>
+        <div class="footer-social">
+          <a href="#" aria-label="Facebook" title="Facebook"></a>
+          <a href="#" aria-label="Twitter" title="Twitter"></a>
+          <a href="#" aria-label="Instagram" title="Instagram"></a>
+          <a href="#" aria-label="GitHub" title="GitHub"></a>
+        </div>
+      </div>
+      <div>
+        <h4>Product</h4>
+        <ul class="footer-links">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="browse-issues.html">Browse Issues</a></li>
+          <li><a href="report-issue.html">Report Issue</a></li>
+          <li><a href="login.html">Sign In</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Company</h4>
+        <ul class="footer-links">
+          <li><a href="about.html">About Us</a></li>
+          <li><a href="#">Blog</a></li>
+          <li><a href="#">Careers</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Legal</h4>
+        <ul class="footer-links">
+          <li><a href="privacy-policy.html">Privacy Policy</a></li>
+          <li><a href="terms-of-service.html">Terms of Service</a></li>
+          <li><a href="cookie-policy.html">Cookie Policy</a></li>
+          <li><a href="accessibility.html">Accessibility</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="container footer-bottom">
+      <small>© 2026 CityReport. All rights reserved.</small>
+      <nav class="nav-links" style="gap:1rem;">
+        <a href="#">Status</a>
+        <a href="#">Docs</a>
+        <a href="#">Support</a>
+      </nav>
+    </div>
+  </footer>
+  <script src="../JS/cityreport-api.js"></script>
+  <script src="../JS/site.js"></script>
+  <script src="../JS/admin.js"></script>
+</body>
+</html>

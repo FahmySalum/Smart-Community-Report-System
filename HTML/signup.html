@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CityReport — Sign Up</title>
+  <link rel="stylesheet" href="../CSS/style.css">
+</head>
+<body>
+  <main class="signup-wrapper">
+    <article class="auth-card">
+      <div class="auth-header">
+        <div class="brand-badge">C</div>
+        <h1>Create Account</h1>
+        <p>Join CityReport and help your community</p>
+      </div>
+      <div class="auth-body">
+        <form id="signup-form">
+          <div class="form-group">
+            <label for="fullname">Full Name</label>
+            <input id="fullname" type="text" placeholder="John Doe" required>
+          </div>
+          <div class="form-group">
+            <label for="email">Email</label>
+            <input id="email" type="email" placeholder="you@example.com" required>
+          </div>
+          <div class="form-group">
+            <label for="password">Password</label>
+            <input id="password" type="password" placeholder="••••••••" required>
+          </div>
+          <div class="form-group">
+            <label for="confirm">Confirm Password</label>
+            <input id="confirm" type="password" placeholder="••••••••" required>
+          </div>
+          <div class="form-status" id="auth-status" aria-live="polite"></div>
+          <button class="btn btn-primary" type="submit" style="width:100%;">Create Account</button>
+        </form>
+      </div>
+      <div class="auth-footer">Already have an account? <a href="login.html">Sign In</a></div>
+    </article>
+  </main>
+
+  <footer class="footer">
+    <div class="container footer-grid">
+      <div>
+        <a href="index.html" class="brand" style="color:#FFFFFF;"><span class="brand-icon">C</span>CityReport</a>
+        <p>Empowering communities to report, track, and resolve local issues — together.</p>
+        <div class="footer-social">
+          <a href="#" aria-label="Facebook" title="Facebook"></a>
+          <a href="#" aria-label="Twitter" title="Twitter"></a>
+          <a href="#" aria-label="Instagram" title="Instagram"></a>
+          <a href="#" aria-label="GitHub" title="GitHub"></a>
+        </div>
+      </div>
+      <div>
+        <h4>Product</h4>
+        <ul class="footer-links">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="browse-issues.html">Browse Issues</a></li>
+          <li><a href="report-issue.html">Report Issue</a></li>
+          <li><a href="login.html">Sign In</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Company</h4>
+        <ul class="footer-links">
+          <li><a href="about.html">About Us</a></li>
+          <li><a href="#">Blog</a></li>
+          <li><a href="#">Careers</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Legal</h4>
+        <ul class="footer-links">
+          <li><a href="privacy-policy.html">Privacy Policy</a></li>
+          <li><a href="terms-of-service.html">Terms of Service</a></li>
+          <li><a href="cookie-policy.html">Cookie Policy</a></li>
+          <li><a href="accessibility.html">Accessibility</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="container footer-bottom">
+      <small>© 2026 CityReport. All rights reserved.</small>
+      <nav class="nav-links" style="gap:1rem;">
+        <a href="#">Status</a>
+        <a href="#">Docs</a>
+        <a href="#">Support</a>
+      </nav>
+    </div>
+  </footer>
+  <script src="../JS/cityreport-api.js"></script>
+  <script src="../JS/auth.js"></script>
+  <script src="../JS/site.js"></script>
+</html>

@@ -1,0 +1,409 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CityReport — Report an Issue</title>
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
+  <link rel="stylesheet" href="../CSS/style.css">
+</head>
+<body>
+  <header class="navbar">
+    <div class="container navbar-inner">
+      <a href="index.html" class="brand"><span class="brand-icon">C</span>CityReport</a>
+      <nav class="nav-links">
+        <a href="index.html">Home</a>
+        <a href="browse-issues.html">Browse Issues</a>
+        <a href="report-issue.html" class="active">Report Issue</a>
+      </nav>
+      <div class="nav-actions">
+        <a href="login.html" class="sign-in">Sign In</a>
+        <a href="signup.html" class="sign-up">Sign Up</a>
+      </div>
+    </div>
+  </header>
+
+  <main class="container page-section">
+    <div class="section-title" style="align-items:flex-start; gap:1rem;">
+      <div>
+        <h2>Report an Issue</h2>
+        <p style="color:rgba(18,18,18,0.55);">Help improve your community by reporting problems you've found.</p>
+      </div>
+    </div>
+
+    <form class="card form-card" id="report-form">
+      <div class="form-group">
+        <label for="title">Title *</label>
+        <input id="title" name="title" type="text" placeholder="Brief description of the issue" required>
+      </div>
+      <div class="form-row">
+        <div class="form-group">
+          <label for="category">Category *</label>
+          <select id="category" name="category" required>
+            <option value="">Select category</option>
+            <option value="pothole">Pothole</option>
+            <option value="streetlight">Streetlight</option>
+            <option value="water_leak">Water Leak</option>
+            <option value="garbage">Garbage/Litter</option>
+            <option value="graffiti">Graffiti</option>
+            <option value="noise">Noise Complaint</option>
+            <option value="drainage">Drainage</option>
+            <option value="road_damage">Road Damage</option>
+            <option value="other">Other</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="priority">Priority *</label>
+          <select id="priority" name="priority" required>
+            <option value="">Select priority</option>
+            <option value="low">Low</option>
+            <option value="medium">Medium</option>
+            <option value="high">High</option>
+            <option value="critical">Critical</option>
+          </select>
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="location">Location *</label>
+        <div class="location-tools">
+          <input id="location" name="location" type="text" placeholder="Street address or landmark" required>
+          <button class="btn btn-secondary" id="use-current-location" type="button">Use Current Location</button>
+          <button class="btn btn-secondary" id="open-map-view" type="button" disabled>Open Map View</button>
+        </div>
+        <div class="location-map is-fallback" id="location-map" role="button" tabindex="0" aria-label="Pick a report location on the map">
+          <span class="map-road map-road-horizontal"></span>
+          <span class="map-road map-road-vertical"></span>
+          <span class="map-poi">Civic Center</span>
+          <span class="map-poi">Park Zone</span>
+          <span class="location-marker" id="location-marker"></span>
+        </div>
+        <input id="latitude" type="hidden" name="latitude">
+        <input id="longitude" type="hidden" name="longitude">
+        <span class="location-status" id="location-status">Choose a point on the map or enter an address manually.</span>
+      </div>
+      <div class="form-group">
+        <label for="description">Description *</label>
+        <textarea id="description" name="description" placeholder="Describe the issue in detail." required></textarea>
+      </div>
+      <div class="form-group">
+        <label for="attachment">Photo or Attachment (optional)</label>
+        <label class="file-drop" for="attachment" id="file-drop">
+          <input id="attachment" class="file-input" name="attachments" type="file" accept="image/png,image/jpeg,image/webp,application/pdf,.doc,.docx" multiple>
+          <strong>Click or drag files here</strong>
+          <p>Upload photos or supporting attachments for the report.</p>
+          <p style="font-size:0.85rem;color:rgba(18,18,18,0.6);">PNG, JPG, WEBP, PDF, DOC, or DOCX up to 5MB each</p>
+        </label>
+        <span class="file-status" id="file-status">No attachment selected.</span>
+        <ul class="file-list" id="file-list" aria-live="polite"></ul>
+      </div>
+      <button class="btn btn-primary" id="submit-report" type="submit" style="width:100%;">Submit Report</button>
+      <span class="form-status" id="report-status" aria-live="polite"></span>
+    </form>
+  </main>
+
+  <footer class="footer">
+    <div class="container footer-grid">
+      <div>
+        <a href="index.html" class="brand" style="color:#FFFFFF;"><span class="brand-icon">C</span>CityReport</a>
+        <p>Empowering communities to report, track, and resolve local issues — together.</p>
+        <div class="footer-social">
+          <a href="#" aria-label="Facebook" title="Facebook"></a>
+          <a href="#" aria-label="Twitter" title="Twitter"></a>
+          <a href="#" aria-label="Instagram" title="Instagram"></a>
+          <a href="#" aria-label="GitHub" title="GitHub"></a>
+        </div>
+      </div>
+      <div>
+        <h4>Product</h4>
+        <ul class="footer-links">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="browse-issues.html">Browse Issues</a></li>
+          <li><a href="report-issue.html">Report Issue</a></li>
+          <li><a href="login.html">Sign In</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Company</h4>
+        <ul class="footer-links">
+          <li><a href="about.html">About Us</a></li>
+          <li><a href="#">Blog</a></li>
+          <li><a href="#">Careers</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Legal</h4>
+        <ul class="footer-links">
+          <li><a href="privacy-policy.html">Privacy Policy</a></li>
+          <li><a href="terms-of-service.html">Terms of Service</a></li>
+          <li><a href="cookie-policy.html">Cookie Policy</a></li>
+          <li><a href="accessibility.html">Accessibility</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="container footer-bottom">
+      <small>© 2026 CityReport. All rights reserved.</small>
+      <nav class="nav-links" style="gap:1rem;">
+        <a href="#">Status</a>
+        <a href="#">Docs</a>
+        <a href="#">Support</a>
+      </nav>
+    </div>
+  </footer>
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+  <script src="../JS/cityreport-api.js"></script>
+  <script src="../JS/site.js"></script>
+  <script>
+    const reportForm = document.getElementById('report-form');
+    const reportStatus = document.getElementById('report-status');
+    const submitReportButton = document.getElementById('submit-report');
+    const locationInput = document.getElementById('location');
+    const latitudeInput = document.getElementById('latitude');
+    const longitudeInput = document.getElementById('longitude');
+    const locationMap = document.getElementById('location-map');
+    const locationMarker = document.getElementById('location-marker');
+    const locationStatus = document.getElementById('location-status');
+    const useCurrentLocationButton = document.getElementById('use-current-location');
+    const openMapViewButton = document.getElementById('open-map-view');
+    const attachmentInput = document.getElementById('attachment');
+    const fileDrop = document.getElementById('file-drop');
+    const fileStatus = document.getElementById('file-status');
+    const fileList = document.getElementById('file-list');
+    const maxFileSize = 5 * 1024 * 1024;
+    const defaultMapCenter = [40.7600, -73.9800];
+    let reportMap;
+    let reportMarker;
+
+    function setMapMarker(xPercent, yPercent) {
+      locationMarker.style.left = `${xPercent}%`;
+      locationMarker.style.top = `${yPercent}%`;
+      locationMarker.classList.add('is-visible');
+    }
+
+    function updateOpenMapButton() {
+      openMapViewButton.disabled = !latitudeInput.value && !longitudeInput.value && !locationInput.value.trim();
+    }
+
+    function setLocationValue(label, latitude, longitude) {
+      locationInput.value = label;
+      latitudeInput.value = latitude;
+      longitudeInput.value = longitude;
+      locationStatus.textContent = `Selected location: ${label}`;
+      updateOpenMapButton();
+    }
+
+    function placeLeafletMarker(latitude, longitude, shouldZoom = true) {
+      if (!reportMap || !window.L) return;
+
+      const coordinates = [Number(latitude), Number(longitude)];
+      if (!reportMarker) {
+        reportMarker = L.marker(coordinates).addTo(reportMap);
+      } else {
+        reportMarker.setLatLng(coordinates);
+      }
+
+      if (shouldZoom) {
+        reportMap.setView(coordinates, 17);
+      }
+    }
+
+    function selectMapCoordinates(latitude, longitude, label, shouldZoom = true) {
+      const lat = Number(latitude).toFixed(6);
+      const lng = Number(longitude).toFixed(6);
+      setLocationValue(`${label} (${lat}, ${lng})`, lat, lng);
+      placeLeafletMarker(lat, lng, shouldZoom);
+    }
+
+    function getMapViewUrl() {
+      const latitude = latitudeInput.value;
+      const longitude = longitudeInput.value;
+      const typedLocation = locationInput.value.trim();
+
+      if (latitude && longitude) {
+        return `https://www.openstreetmap.org/?mlat=${encodeURIComponent(latitude)}&mlon=${encodeURIComponent(longitude)}#map=18/${encodeURIComponent(latitude)}/${encodeURIComponent(longitude)}`;
+      }
+
+      if (typedLocation) {
+        return `https://www.openstreetmap.org/search?query=${encodeURIComponent(typedLocation)}`;
+      }
+
+      return '';
+    }
+
+    function initLocationMap() {
+      if (!window.L) {
+        locationStatus.textContent = 'Map tiles could not load. You can still click the preview or enter an address.';
+        return;
+      }
+
+      locationMap.classList.remove('is-fallback');
+      locationMap.removeAttribute('role');
+      locationMap.removeAttribute('tabindex');
+      reportMap = L.map(locationMap, {
+        scrollWheelZoom: false
+      }).setView(defaultMapCenter, 13);
+
+      L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        maxZoom: 19,
+        attribution: '&copy; OpenStreetMap contributors'
+      }).addTo(reportMap);
+
+      reportMap.on('click', event => {
+        selectMapCoordinates(event.latlng.lat, event.latlng.lng, 'Map pin', false);
+      });
+    }
+
+    function pickMapLocation(clientX, clientY) {
+      const rect = locationMap.getBoundingClientRect();
+      const xPercent = Math.min(100, Math.max(0, ((clientX - rect.left) / rect.width) * 100));
+      const yPercent = Math.min(100, Math.max(0, ((clientY - rect.top) / rect.height) * 100));
+      const latitude = (40.7600 + ((50 - yPercent) / 100) * 0.08).toFixed(6);
+      const longitude = (-73.9800 + ((xPercent - 50) / 100) * 0.08).toFixed(6);
+      const zone = xPercent < 50 ? 'West' : 'East';
+      const corridor = yPercent < 50 ? 'North' : 'South';
+
+      setMapMarker(xPercent, yPercent);
+      setLocationValue(`${corridor} ${zone} map pin (${latitude}, ${longitude})`, latitude, longitude);
+    }
+
+    locationMap.addEventListener('click', event => {
+      if (reportMap) return;
+      pickMapLocation(event.clientX, event.clientY);
+    });
+
+    locationMap.addEventListener('keydown', event => {
+      if (!reportMap && (event.key === 'Enter' || event.key === ' ')) {
+        event.preventDefault();
+        const rect = locationMap.getBoundingClientRect();
+        pickMapLocation(rect.left + rect.width / 2, rect.top + rect.height / 2);
+      }
+    });
+
+    locationInput.addEventListener('input', () => {
+      latitudeInput.value = '';
+      longitudeInput.value = '';
+      updateOpenMapButton();
+    });
+
+    openMapViewButton.addEventListener('click', () => {
+      const mapUrl = getMapViewUrl();
+      if (!mapUrl) {
+        locationStatus.textContent = 'Choose a map point or enter an address first.';
+        return;
+      }
+
+      window.open(mapUrl, '_blank', 'noopener');
+    });
+
+    useCurrentLocationButton.addEventListener('click', () => {
+      if (!navigator.geolocation) {
+        locationStatus.textContent = 'Current location is not supported by this browser.';
+        return;
+      }
+
+      locationStatus.textContent = 'Finding your current location...';
+      navigator.geolocation.getCurrentPosition(
+        position => {
+          const latitude = position.coords.latitude.toFixed(6);
+          const longitude = position.coords.longitude.toFixed(6);
+          setMapMarker(50, 50);
+          selectMapCoordinates(latitude, longitude, 'Current location');
+        },
+        () => {
+          locationStatus.textContent = 'Location permission was denied or unavailable. You can still pick a point on the map.';
+        },
+        {
+          enableHighAccuracy: true,
+          timeout: 10000,
+          maximumAge: 60000
+        }
+      );
+    });
+
+    function formatFileSize(bytes) {
+      if (bytes < 1024) return `${bytes} B`;
+      if (bytes < 1024 * 1024) return `${(bytes / 1024).toFixed(1)} KB`;
+      return `${(bytes / (1024 * 1024)).toFixed(1)} MB`;
+    }
+
+    function updateFileList() {
+      const files = Array.from(attachmentInput.files);
+      fileList.innerHTML = '';
+      fileList.classList.toggle('has-files', files.length > 0);
+
+      if (!files.length) {
+        fileStatus.textContent = 'No attachment selected.';
+        return;
+      }
+
+      const oversized = files.filter(file => file.size > maxFileSize);
+      fileStatus.textContent = oversized.length
+        ? `${oversized.length} file${oversized.length > 1 ? 's are' : ' is'} over the 5MB limit.`
+        : `${files.length} attachment${files.length > 1 ? 's' : ''} selected.`;
+
+      files.forEach(file => {
+        const item = document.createElement('li');
+        const name = document.createElement('span');
+        const size = document.createElement('small');
+        name.textContent = file.name;
+        size.textContent = formatFileSize(file.size);
+        item.append(name, size);
+        fileList.appendChild(item);
+      });
+    }
+
+    ['dragenter', 'dragover'].forEach(eventName => {
+      fileDrop.addEventListener(eventName, event => {
+        event.preventDefault();
+        fileDrop.classList.add('is-dragging');
+      });
+    });
+
+    ['dragleave', 'drop'].forEach(eventName => {
+      fileDrop.addEventListener(eventName, event => {
+        event.preventDefault();
+        fileDrop.classList.remove('is-dragging');
+      });
+    });
+
+    fileDrop.addEventListener('drop', event => {
+      if (event.dataTransfer.files.length) {
+        attachmentInput.files = event.dataTransfer.files;
+        updateFileList();
+      }
+    });
+
+    attachmentInput.addEventListener('change', updateFileList);
+
+    reportForm.addEventListener('submit', async event => {
+      event.preventDefault();
+      reportStatus.className = 'form-status';
+      reportStatus.textContent = 'Submitting report...';
+      submitReportButton.disabled = true;
+
+      try {
+        const user = CityReport.getCurrentUser();
+        const formData = new FormData(reportForm);
+        if (user?.id) formData.append('reportedById', user.id);
+        formData.append('reportedByName', user?.name || 'Guest Reporter');
+
+        const { issue } = await CityReport.request('/api/issues', {
+          method: 'POST',
+          body: formData
+        });
+
+        reportStatus.classList.add('is-success');
+        reportStatus.textContent = `Report ${issue.id} submitted successfully. Opening the issue record...`;
+        window.location.href = `issue-detail.html?id=${encodeURIComponent(issue.id)}`;
+      } catch (error) {
+        reportStatus.classList.add('is-error');
+        reportStatus.textContent = `${error.message} Start the local server with npm start if this page is opened directly.`;
+      } finally {
+        submitReportButton.disabled = false;
+      }
+    });
+
+    initLocationMap();
+  </script>
+</body>
+</html>

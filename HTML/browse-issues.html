@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CityReport — Browse Issues</title>
+  <link rel="stylesheet" href="../CSS/style.css">
+</head>
+<body>
+  <header class="navbar">
+    <div class="container navbar-inner">
+      <a href="index.html" class="brand"><span class="brand-icon">C</span>CityReport</a>
+      <nav class="nav-links">
+        <a href="index.html">Home</a>
+        <a href="browse-issues.html" class="active">Browse Issues</a>
+        <a href="report-issue.html">Report Issue</a>
+      </nav>
+      <div class="nav-actions">
+        <a href="login.html" class="sign-in">Sign In</a>
+        <a href="signup.html" class="sign-up">Sign Up</a>
+      </div>
+    </div>
+  </header>
+
+  <main class="container page-section">
+    <div class="section-title" style="align-items:flex-start; gap:1rem;">
+      <div>
+        <h2>Browse Issues</h2>
+        <p style="color:rgba(18,18,18,0.55);">View and track all reported community issues</p>
+      </div>
+    </div>
+
+    <div class="card filter-card" style="padding:2rem; margin-bottom:2rem;">
+      <h3 style="margin-bottom:1.5rem;">Filter Issues</h3>
+      <form class="filter-form">
+        <div class="form-row">
+          <div class="form-group">
+            <label for="search">Search</label>
+            <div style="position:relative;">
+              <input id="search" type="text" placeholder="Search by title or location..." style="padding-left:2.75rem;">
+              <span style="position:absolute; left:1rem; top:50%; transform:translateY(-50%); color:rgba(18,18,18,0.5); font-weight:700;">🔍</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label for="category">Category</label>
+            <select id="category">
+              <option value="">All Categories</option>
+              <option value="pothole">Pothole</option>
+              <option value="streetlight">Streetlight</option>
+              <option value="water_leak">Water Leak</option>
+              <option value="garbage">Garbage/Litter</option>
+              <option value="graffiti">Graffiti</option>
+              <option value="drainage">Drainage</option>
+              <option value="road_damage">Road Damage</option>
+              <option value="noise">Noise Complaint</option>
+              <option value="other">Other</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="status">Status</label>
+            <select id="status">
+              <option value="">All Statuses</option>
+              <option value="open">Open</option>
+              <option value="in_progress">In Progress</option>
+              <option value="resolved">Resolved</option>
+              <option value="closed">Closed</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="priority">Priority</label>
+            <select id="priority">
+              <option value="">All Priorities</option>
+              <option value="low">Low</option>
+              <option value="medium">Medium</option>
+              <option value="high">High</option>
+              <option value="critical">Critical</option>
+            </select>
+          </div>
+        </div>
+
+        <div style="display:flex; gap:1rem; margin-top:1.5rem;">
+          <button type="button" class="btn btn-primary" style="padding:0.85rem 1.5rem;">Apply Filters</button>
+          <button type="reset" class="btn btn-secondary" style="padding:0.85rem 1.5rem;">Reset</button>
+        </div>
+      </form>
+
+      <p style="margin-top:1.5rem; padding-top:1.5rem; border-top:1px solid var(--border); color:rgba(18,18,18,0.55); font-size:0.95rem;"><strong>Results:</strong> <span id="issue-count">8</span> issues found</p>
+    </div>
+
+    <div class="card-grid">
+      <article class="issue-card">
+        <div class="top">
+          <span class="badge badge-soft">Pothole</span>
+          <span class="badge badge-warning">High Priority</span>
+          <span style="color:rgba(18,18,18,0.45);font-size:0.75rem;letter-spacing:0.1em;">2h ago</span>
+        </div>
+        <h3>Large pothole on Main Street near intersection</h3>
+        <p>A large pothole approximately 2 feet wide has appeared on Main Street near the intersection with Oak Avenue. It is a danger to vehicles and cyclists.</p>
+        <div class="meta">
+          <span>Main Street & Oak Avenue</span>
+          <span>Status · Open</span>
+        </div>
+      </article>
+      <article class="issue-card">
+        <div class="top">
+          <span class="badge badge-soft">Streetlight</span>
+          <span class="badge badge-warning">Medium Priority</span>
+          <span style="color:rgba(18,18,18,0.45);font-size:0.75rem;letter-spacing:0.1em;">3d ago</span>
+        </div>
+        <h3>Broken streetlight on Elm Road</h3>
+        <p>The streetlight outside 45 Elm Road has been flickering for the past week and is now completely out. The area is very dark at night.</p>
+        <div class="meta">
+          <span>45 Elm Road</span>
+          <span>Status · In Progress</span>
+        </div>
+      </article>
+      <article class="issue-card">
+        <div class="top">
+          <span class="badge badge-soft">Water Leak</span>
+          <span class="badge badge-danger">Critical Priority</span>
+          <span style="color:rgba(18,18,18,0.45);font-size:0.75rem;letter-spacing:0.1em;">1d ago</span>
+        </div>
+        <h3>Water leak from fire hydrant on Park Lane</h3>
+        <p>A steady stream of water has been leaking from the fire hydrant on Park Lane for the past 3 days. Water is pooling on the sidewalk.</p>
+        <div class="meta">
+          <span>Park Lane, near #12</span>
+          <span>Status · Open</span>
+        </div>
+      </article>
+      <article class="issue-card">
+        <div class="top">
+          <span class="badge badge-soft">Garbage/Litter</span>
+          <span class="badge badge-primary">Medium Priority</span>
+          <span style="color:rgba(18,18,18,0.45);font-size:0.75rem;letter-spacing:0.1em;">5d ago</span>
+        </div>
+        <h3>Overflowing garbage bins at Central Park</h3>
+        <p>The garbage bins at the south entrance of Central Park have been overflowing for several days. Trash is scattered around the area.</p>
+        <div class="meta">
+          <span>Central Park, South Entrance</span>
+          <span>Status · Resolved</span>
+        </div>
+      </article>
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="container footer-grid">
+      <div>
+        <a href="index.html" class="brand" style="color:#FFFFFF;"><span class="brand-icon">C</span>CityReport</a>
+        <p>Empowering communities to report, track, and resolve local issues — together.</p>
+        <div class="footer-social">
+          <a href="#" aria-label="Facebook" title="Facebook"></a>
+          <a href="#" aria-label="Twitter" title="Twitter"></a>
+          <a href="#" aria-label="Instagram" title="Instagram"></a>
+          <a href="#" aria-label="GitHub" title="GitHub"></a>
+        </div>
+      </div>
+      <div>
+        <h4>Product</h4>
+        <ul class="footer-links">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="browse-issues.html">Browse Issues</a></li>
+          <li><a href="report-issue.html">Report Issue</a></li>
+          <li><a href="login.html">Sign In</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Company</h4>
+        <ul class="footer-links">
+          <li><a href="about.html">About Us</a></li>
+          <li><a href="#">Blog</a></li>
+          <li><a href="#">Careers</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Legal</h4>
+        <ul class="footer-links">
+          <li><a href="privacy-policy.html">Privacy Policy</a></li>
+          <li><a href="terms-of-service.html">Terms of Service</a></li>
+          <li><a href="cookie-policy.html">Cookie Policy</a></li>
+          <li><a href="accessibility.html">Accessibility</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="container footer-bottom">
+      <small>© 2026 CityReport. All rights reserved.</small>
+      <nav class="nav-links" style="gap:1rem;">
+        <a href="#">Status</a>
+        <a href="#">Docs</a>
+        <a href="#">Support</a>
+      </nav>
+    </div>
+  </footer>
+
+  <script src="../JS/cityreport-api.js"></script>
+  <script src="../JS/site.js"></script>
+  <script>
+    let issues = [];
+
+    const categoryLabels = {
+      pothole: 'Pothole',
+      streetlight: 'Streetlight',
+      water_leak: 'Water Leak',
+      garbage: 'Garbage/Litter',
+      graffiti: 'Graffiti',
+      drainage: 'Drainage',
+      road_damage: 'Road Damage',
+      noise: 'Noise Complaint',
+      other: 'Other'
+    };
+
+    const priorityColors = {
+      low: 'badge-soft',
+      medium: 'badge-primary',
+      high: 'badge-warning',
+      critical: 'badge-danger'
+    };
+
+    function getFilterValues() {
+      return {
+        search: document.getElementById('search').value.trim(),
+        category: document.getElementById('category').value,
+        status: document.getElementById('status').value,
+        priority: document.getElementById('priority').value
+      };
+    }
+
+    async function loadIssues() {
+      const filters = getFilterValues();
+      const params = new URLSearchParams();
+      if (filters.search) params.set('search', filters.search);
+      if (filters.category) params.set('category', filters.category);
+      if (filters.status) params.set('status', filters.status);
+      if (filters.priority) params.set('priority', filters.priority);
+
+      const query = params.toString();
+      const response = await CityReport.request(`/api/issues${query ? `?${query}` : ''}`);
+      issues = response.issues || [];
+      renderIssues(issues);
+      document.getElementById('issue-count').textContent = issues.length;
+    }
+
+    function renderIssues(filteredIssues) {
+      const container = document.querySelector('.card-grid');
+      if (!container) return;
+
+      if (filteredIssues.length === 0) {
+        container.innerHTML = '<div style="grid-column:1/-1; padding:3rem; text-align:center; background:var(--surface-2); border-radius:1.5rem; color:rgba(18,18,18,0.65);">No issues found matching your filters.</div>';
+        return;
+      }
+
+      container.innerHTML = filteredIssues.map(issue => {
+        const title = CityReport.escapeHTML(issue.title);
+        const description = CityReport.escapeHTML(issue.description);
+        const location = CityReport.escapeHTML(issue.location);
+        const category = CityReport.escapeHTML(categoryLabels[issue.category] || issue.category);
+        const statusLabel = CityReport.escapeHTML(issue.statusLabel || issue.status);
+        const priority = CityReport.escapeHTML(issue.priority.charAt(0).toUpperCase() + issue.priority.slice(1));
+        return `
+          <article class="issue-card">
+            <div class="top">
+              <span class="badge badge-soft">${category}</span>
+              <span class="badge ${priorityColors[issue.priority] || 'badge-soft'}">${priority} Priority</span>
+              <span style="color:rgba(18,18,18,0.45);font-size:0.75rem;letter-spacing:0.1em;">${CityReport.relativeTime(issue.reportedAt)}</span>
+            </div>
+            <h3><a href="issue-detail.html?id=${encodeURIComponent(issue.id)}">${title}</a></h3>
+            <p>${description}</p>
+            <div class="meta">
+              <span>${location}</span>
+              <span>Status · ${statusLabel}</span>
+            </div>
+          </article>
+        `;
+      }).join('');
+    }
+
+    function attachFilterListeners() {
+      const searchInput = document.getElementById('search');
+      const categoryInput = document.getElementById('category');
+      const statusInput = document.getElementById('status');
+      const priorityInput = document.getElementById('priority');
+      const filterForm = document.querySelector('.filter-form');
+      const applyButton = document.querySelector('.filter-form .btn-primary');
+
+      if (searchInput) searchInput.addEventListener('input', loadIssues);
+      if (categoryInput) categoryInput.addEventListener('change', loadIssues);
+      if (statusInput) statusInput.addEventListener('change', loadIssues);
+      if (priorityInput) priorityInput.addEventListener('change', loadIssues);
+      if (filterForm) filterForm.addEventListener('reset', () => setTimeout(loadIssues, 0));
+      if (applyButton) applyButton.addEventListener('click', loadIssues);
+    }
+
+    attachFilterListeners();
+    loadIssues().catch(error => {
+      console.error('Unable to load issues:', error);
+      document.querySelector('.card-grid').innerHTML = '<div style="grid-column:1/-1; padding:3rem; text-align:center; background:var(--surface-2); border-radius:1.5rem; color:rgba(18,18,18,0.65);">Unable to load issues at this time.</div>';
+    });
+  </script>
+</body>
+</html>

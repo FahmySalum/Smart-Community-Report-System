@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CityReport — Home</title>
+    <link rel="stylesheet" href="../CSS/style.css">
+</head>
+
+<body>
+    <header class="navbar">
+        <div class="container navbar-inner">
+            <a href="index.html" class="brand"><span class="brand-icon">C</span>CityReport</a>
+            <nav class="nav-links">
+                <a href="index.html" class="active">Home</a>
+                <a href="browse-issues.html">Browse Issues</a>
+                <a href="report-issue.html">Report Issue</a>
+            </nav>
+            <div class="nav-actions">
+                <a href="login.html" class="sign-in">Sign In</a>
+                <a href="signup.html" class="sign-up">Sign Up</a>
+            </div>
+        </div>
+    </header>
+
+    <main class="container">
+        <section class="hero">
+            <div class="hero-grid">
+                <div class="hero-copy">
+                    <div class="eyebrow">Urban Accountability Platform</div>
+                    <h1>Report. Track.<br>Resolve.</h1>
+                    <p>Citizen-led reporting for the modern city. Document urban friction — from infrastructure to public services — and follow every case from filing to closure.</p>
+                    <div class="hero-actions">
+                        <a href="report-issue.html" class="btn btn-primary">Report an Issue</a>
+                        <a href="browse-issues.html" class="btn btn-secondary">Browse Registry</a>
+                    </div>
+
+                    <div class="hero-meta">
+                        <div class="stat"><strong id="open-issues-count">0</strong><span>Open Cases</span></div>
+                        <div class="stat"><strong id="in-progress-count">0</strong><span>In Progress</span></div>
+                        <div class="stat"><strong id="resolved-count">0</strong><span>Resolved</span></div>
+                        <div class="stat"><strong id="total-reports-count">0</strong><span>Total Reports</span></div>
+                    </div>
+                </div>
+
+                <div class="hero-visual">
+                    <img src="../images/urban-impact.jpg" alt="Urban infrastructure damage and community response" class="hero-image">
+                    <div class="latest-card">
+                        <h4>Latest Update</h4>
+                        <p>Building accident reported on Kariakoo Street.</p>
+                        <div class="status-chip"><span style="width:0.6rem;height:0.6rem;border-radius:999px;background:#15803D;display:inline-block"></span>Resolved</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="page-section">
+            <div class="feature-grid">
+                <article class="feature-panel">
+                    <div class="eyebrow">01</div>
+                    <h3>Report</h3>
+                    <p>File the issue in under a minute. Add a photo, a location, and a short description.</p>
+                </article>
+                <article class="feature-panel">
+                    <div class="eyebrow">02</div>
+                    <h3>Track</h3>
+                    <p>Watch the case move through triage, assignment, and field response in real time.</p>
+                </article>
+                <article class="feature-panel">
+                    <div class="eyebrow">03</div>
+                    <h3>Resolve</h3>
+                    <p>Get notified when the work is closed. Every record stays on the public ledger.</p>
+                </article>
+            </div>
+        </section>
+
+        <section class="page-section">
+            <div class="section-title">
+                <div>
+                    <h2>Recent Reports</h2>
+                    <p style="font-size:0.75rem;text-transform:uppercase;letter-spacing:0.2em;color:rgba(18,18,18,0.45);">Live updates from your community</p>
+                </div>
+                <a href="browse-issues.html">View Registry →</a>
+            </div>
+
+            <div class="card-grid">
+                <article class="issue-card">
+                    <div class="top">
+                        <span class="badge badge-soft">Pothole</span>
+                        <span class="badge badge-warning">High Priority</span>
+                        <span style="color:rgba(18,18,18,0.45);font-size:0.75rem;letter-spacing:0.1em;">8h ago</span>
+                    </div>
+                    <h3>Large pothole on Main Street near intersection</h3>
+                    <p>A large pothole approximately 2 feet wide has appeared on Main Street near the intersection with Oak Avenue. It is a danger to vehicles and cyclists.</p>
+                    <div class="meta">
+                        <span>Main Street & Oak Avenue</span>
+                        <span>Status · Open</span>
+                    </div>
+                </article>
+
+                <article class="issue-card">
+                    <div class="top">
+                        <span class="badge badge-soft">Streetlight</span>
+                        <span class="badge badge-warning">Medium Priority</span>
+                        <span style="color:rgba(18,18,18,0.45);font-size:0.75rem;letter-spacing:0.1em;">3d ago</span>
+                    </div>
+                    <h3>Broken streetlight on Elm Road</h3>
+                    <p>The streetlight outside 45 Elm Road has been flickering for the past week and is now completely out. The area is very dark at night.</p>
+                    <div class="meta">
+                        <span>45 Elm Road</span>
+                        <span>Status · In Progress</span>
+                    </div>
+                </article>
+
+                <article class="issue-card">
+                    <div class="top">
+                        <span class="badge badge-soft">Water Leak</span>
+                        <span class="badge badge-danger">Critical Priority</span>
+                        <span style="color:rgba(18,18,18,0.45);font-size:0.75rem;letter-spacing:0.1em;">1d ago</span>
+                    </div>
+                    <h3>Water leak from fire hydrant on Park Lane</h3>
+                    <p>A steady stream of water has been leaking from the fire hydrant on Park Lane for the past 3 days. Water is pooling on the sidewalk.</p>
+                    <div class="meta">
+                        <span>Park Lane, near #12</span>
+                        <span>Status · Open</span>
+                    </div>
+                </article>
+
+                <article class="issue-card">
+                    <div class="top">
+                        <span class="badge badge-soft">Garbage/Litter</span>
+                        <span class="badge badge-primary">Medium Priority</span>
+                        <span style="color:rgba(18,18,18,0.45);font-size:0.75rem;letter-spacing:0.1em;">5d ago</span>
+                    </div>
+                    <h3>Overflowing garbage bins at Central Park</h3>
+                    <p>The garbage bins at the south entrance of Central Park have been overflowing for several days. Trash is scattered around the area.</p>
+                    <div class="meta">
+                        <span>Central Park, South Entrance</span>
+                        <span>Status · Resolved</span>
+                    </div>
+                </article>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+      <div class="container footer-grid">
+        <div>
+          <a href="index.html" class="brand" style="color:#FFFFFF;"><span class="brand-icon">C</span>CityReport</a>
+          <p>Empowering communities to report, track, and resolve local issues — together.</p>
+          <div class="footer-social">
+            <a href="#" aria-label="Facebook" title="Facebook"></a>
+            <a href="#" aria-label="Twitter" title="Twitter"></a>
+            <a href="#" aria-label="Instagram" title="Instagram"></a>
+            <a href="#" aria-label="GitHub" title="GitHub"></a>
+          </div>
+        </div>
+        <div>
+          <h4>Product</h4>
+          <ul class="footer-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="browse-issues.html">Browse Issues</a></li>
+            <li><a href="report-issue.html">Report Issue</a></li>
+            <li><a href="login.html">Sign In</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4>Company</h4>
+          <ul class="footer-links">
+            <li><a href="about.html">About Us</a></li>
+            <li><a href="#">Blog</a></li>
+            <li><a href="#">Careers</a></li>
+            <li><a href="contact.html">Contact</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4>Legal</h4>
+          <ul class="footer-links">
+            <li><a href="privacy-policy.html">Privacy Policy</a></li>
+            <li><a href="terms-of-service.html">Terms of Service</a></li>
+            <li><a href="cookie-policy.html">Cookie Policy</a></li>
+            <li><a href="accessibility.html">Accessibility</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="container footer-bottom">
+        <small>© 2026 CityReport. All rights reserved.</small>
+        <nav class="nav-links" style="gap:1rem;">
+          <a href="#">Status</a>
+          <a href="#">Docs</a>
+          <a href="#">Support</a>
+        </nav>
+      </div>
+    </footer>
+  <script src="../JS/cityreport-api.js"></script>
+  <script src="../JS/site.js"></script>
+  <script>
+    function updateHomepageCounters(summary) {
+      document.getElementById('open-issues-count').textContent = summary.openIssues || 0;
+      document.getElementById('in-progress-count').textContent = summary.inProgressIssues || 0;
+      document.getElementById('resolved-count').textContent = summary.resolvedIssues || 0;
+      document.getElementById('total-reports-count').textContent = summary.totalIssues || 0;
+    }
+
+    function getSummaryFromPageCards() {
+      const cards = Array.from(document.querySelectorAll('.issue-card'));
+      const counts = {
+        totalIssues: cards.length,
+        openIssues: 0,
+        inProgressIssues: 0,
+        resolvedIssues: 0
+      };
+
+      cards.forEach(card => {
+        const statusText = card.querySelector('.meta span:last-child')?.textContent || '';
+        if (/resolved/i.test(statusText) || /closed/i.test(statusText)) {
+          counts.resolvedIssues += 1;
+        } else if (/in progress/i.test(statusText)) {
+          counts.inProgressIssues += 1;
+        } else if (/open/i.test(statusText)) {
+          counts.openIssues += 1;
+        }
+      });
+
+      return counts;
+    }
+
+    async function loadHomepageSummary() {
+      try {
+        const data = await CityReport.request('/api/admin/summary');
+        updateHomepageCounters(data);
+      } catch (error) {
+        console.warn('Unable to load homepage summary:', error);
+        updateHomepageCounters(getSummaryFromPageCards());
+      }
+    }
+
+    loadHomepageSummary();
+  </script>
+</body>
+</html>

@@ -1,0 +1,11 @@
+{
+  "name": "cityreport-static-sqlite",
+  "private": true,
+  "version": "1.0.0",
+  "type": "module",
+  "scripts": {
+    "start": "node server/server.js",
+    "dev": "node server/server.js",
+    "db:reset": "node server/server.js --reset-db"
+  }
+}
