@@ -45,4 +45,4 @@ Version Control
 1. Clone the repository
 
 ```bash
-git clone https://github.com/FahmyJr/Smart-Community-Reporting-System.git
+git clone https://github.com/FahmySalum/Smart-Community-Reporting-System.git
