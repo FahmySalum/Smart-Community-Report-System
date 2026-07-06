@@ -82,5 +82,31 @@
     }
   }
 
-  await Promise.all([loadSummary(), loadIssues(), loadUsers()]);
+  async function loadContacts() {
+    const contactsBody = document.getElementById('admin-contacts-body');
+    if (!contactsBody) return;
+    try {
+      const response = await CityReport.request('/api/admin/contacts');
+      const contacts = response.contacts || [];
+      if (!contacts.length) {
+        contactsBody.innerHTML = '<tr><td colspan="6" style="text-align:center; color:rgba(18,18,18,0.65); padding:2rem;">No messages found.</td></tr>';
+        return;
+      }
+      contactsBody.innerHTML = contacts.map(c => `
+        <tr>
+          <td>${escapeHTML(c.id)}</td>
+          <td>${escapeHTML(c.name)}</td>
+          <td>${escapeHTML(c.email)}</td>
+          <td>${escapeHTML(c.subject || '')}</td>
+          <td style="max-width:40rem;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">${escapeHTML(c.message)}</td>
+          <td>${escapeHTML(new Date(c.createdAt).toLocaleString())}</td>
+        </tr>
+      `).join('');
+    } catch (error) {
+      contactsBody.innerHTML = '<tr><td colspan="6" style="text-align:center; color:rgba(18,18,18,0.65); padding:2rem;">Unable to load messages.</td></tr>';
+      console.error(error);
+    }
+  }
+
+  await Promise.all([loadSummary(), loadIssues(), loadUsers(), loadContacts()]);
 })();

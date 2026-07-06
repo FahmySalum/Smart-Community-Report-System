@@ -154,6 +154,19 @@
   <script src="../JS/cityreport-api.js"></script>
   <script src="../JS/site.js"></script>
   <script>
+    // Require authentication before allowing reporting
+    (function enforceAuth() {
+      try {
+        const user = CityReport.getCurrentUser();
+        if (!user) {
+          const next = encodeURIComponent('report-issue.html');
+          window.location.href = `signup.html?next=${next}`;
+        }
+      } catch (e) {
+        // If CityReport isn't available yet, allow the rest to load (fallback will redirect on submit)
+      }
+    })();
+
     const reportForm = document.getElementById('report-form');
     const reportStatus = document.getElementById('report-status');
     const submitReportButton = document.getElementById('submit-report');

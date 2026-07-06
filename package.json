@@ -4,8 +4,14 @@
   "version": "1.0.0",
   "type": "module",
   "scripts": {
-    "start": "node server/server.js",
-    "dev": "node server/server.js",
-    "db:reset": "node server/server.js --reset-db"
+    "start": "node server/server-mysql.js",
+    "dev": "node server/server-mysql.js",
+    "db:reset": "node server/server-mysql.js --reset-db",
+    "legacy:start": "node server/server.js",
+    "legacy:dev": "node server/server.js"
+  },
+  "dependencies": {
+    "mysql2": "^3.6.5",
+    "dotenv": "^16.3.1"
   }
 }

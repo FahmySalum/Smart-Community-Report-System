@@ -31,28 +31,30 @@
     submitButton.disabled = true;
     showStatus('Signing in...');
 
-try {
-  const { user } = await CityReport.request('/api/auth/login', {
-    method: 'POST',
-    body: JSON.stringify({ email, password })
-  });
+    try {
+      const { user } = await CityReport.request('/api/auth/login', {
+        method: 'POST',
+        body: JSON.stringify({ email, password })
+      });
 
-  CityReport.setCurrentUser(user);
+      CityReport.setCurrentUser(user);
 
-  showStatus('Signed in successfully. Redirecting...', true);
+      showStatus('Signed in successfully. Redirecting...', true);
 
-  // Check user role
-  if (user.role === 'admin') {
-    window.location.href = 'admin.html';
-  } else {
-    window.location.href = 'index.html';
-  }
-
-} catch (error) {
-  showStatus(error.message || 'Unable to sign in.');
-} finally {
-  submitButton.disabled = false;
-}
+      const params = new URLSearchParams(window.location.search);
+      const next = params.get('next');
+      if (next) {
+        window.location.href = next;
+      } else if (user.role === 'admin') {
+        window.location.href = 'admin.html';
+      } else {
+        window.location.href = 'index.html';
+      }
+    } catch (error) {
+      showStatus(error.message || 'Unable to sign in.');
+    } finally {
+      submitButton.disabled = false;
+    }
   }
 
   async function handleSignup(event) {
@@ -85,7 +87,13 @@ try {
       });
       CityReport.setCurrentUser(user);
       showStatus('Account created successfully. Redirecting...', true);
-      window.location.href = 'index.html';
+      const params = new URLSearchParams(window.location.search);
+      const next = params.get('next');
+      if (next) {
+        window.location.href = next;
+      } else {
+        window.location.href = 'index.html';
+      }
     } catch (error) {
       showStatus(error.message || 'Unable to create account.');
     } finally {
